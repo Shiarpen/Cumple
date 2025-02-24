@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="login.css">
+    <title>FELIZ CUMPLE MES</title>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Ingrese la fecha de nuestra primera cita</h2>
+        <input type="date" id="fechaAniversario">
+        <button class="btn" onclick="validarFecha()">Confirmar</button>
+        <p class="mensaje" id="mensaje"></p>
+    </div>
+
+    <script>
+        function validarFecha() {
+            let fechaIngresada = document.getElementById("fechaAniversario").value;
+            let mensaje = document.getElementById("mensaje");
+    
+            if (!fechaIngresada) {
+                mensaje.innerHTML = "❌ Por favor, ingresa una fecha.";
+                mensaje.className = "mensaje error";
+                return;
+            }
+    
+            // Convertir la fecha ingresada a un formato estándar YYYY-MM-DD
+            let fecha = new Date(fechaIngresada);
+            let dia = fecha.getUTCDate();
+            let mes = fecha.getUTCMonth() + 1; // Los meses en JS van de 0 a 11, por eso sumamos 1
+            let año = fecha.getUTCFullYear();
+    
+            // Asegurar que el formato sea DD-MM-YYYY con ceros a la izquierda
+            let fechaFormateada = 
+                (dia < 10 ? '0' + dia : dia) + '-' + 
+                (mes < 10 ? '0' + mes : mes) + '-' + 
+                año;
+    
+            console.log("Fecha ingresada:", fechaFormateada); // Para depuración en consola
+    
+            if (fechaFormateada === "28-12-2024") {
+                mensaje.innerHTML = "✅ TE AMOOOOOOOOO";
+                mensaje.className = "ERES MI VIDA";
+    
+                // Redirige a otra página después de 2 segundos
+                setTimeout(function() {
+                    window.location.href = "index.html"; // Cambia esto por la URL deseada
+                }, 2000);
+            } else {
+                mensaje.innerHTML = "❌ Fecha incorrecta. No me amas.";
+                mensaje.className = "PIPIPIPIPI";
+            }
+        }
+    </script>
+    
+
+</body>
+</html>
